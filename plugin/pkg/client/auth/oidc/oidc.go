@@ -119,9 +119,9 @@ func newOIDCAuthProvider(_ string, cfg map[string]string, persister restclient.A
 	}
 
 	// Check cache for existing provider.
-	if provider, ok := cache.getClient(issuer, clientID); ok {
-		return provider, nil
-	}
+	//if provider, ok := cache.getClient(issuer, clientID); ok {
+	//	return provider, nil
+	//}
 
 	if len(cfg[cfgExtraScopes]) > 0 {
 		klog.V(2).Infof("%s auth provider field depricated, refresh request don't send scopes",
@@ -157,7 +157,7 @@ func newOIDCAuthProvider(_ string, cfg map[string]string, persister restclient.A
 		persister: persister,
 	}
 
-	return cache.setClient(issuer, clientID, provider), nil
+	return provider, nil
 }
 
 type oidcAuthProvider struct {
